@@ -1,0 +1,26 @@
+{
+  "name": "cmacpartnerdocs",
+  "version": "1.0.0",
+  "description": "API documentation to support partners of CMAC to implement compliant APIs that can be integrated with",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/CMACGroup/cmacpartner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/CMACGroup/cmacpartner/issues"
+  },
+  "homepage": "https://github.com/CMACGroup/cmacpartner#readme",
+  "devDependencies": {
+    "vitepress": "^1.0.0-rc.4"
+  }
+}
