@@ -1,18 +1,18 @@
-# Requests
+# Book
 
-Each step of this process is required however some response fields are optional.
+## Details
 
-## Quote
+|             |                                        |
+| ----------- | -------------------------------------- |
+| Url         | https://_\<your custom url\>_**/book** |
+| Method      | POST                                   |
+| HTTP Header | Accept: application/json               |
+| Format      | JSON                                   |
+|             |                                        |
 
-### Details
+## Payloads
 
-|        |                                         |
-| ------ | --------------------------------------- |
-| Url    | https://_\<your custom url\>_**/quote** |
-| Method | POST                                    |
-|        |                                         |
-
-**Request Payload**
+### Request
 
 ```json
 {
@@ -44,27 +44,28 @@ Each step of this process is required however some response fields are optional.
     }
   ],
   "vehicleType": "Saloon",
-  "paxCount": 2
-}
-```
-
-**Response Payload**
-
-```json
-{
-  "eta": 620,
+  "paxCount": 2,
+  "reference": "ABC123:XYZ456",
+  "passenger": {
+    "name": "Mr McTestit",
+    "number": "0778899955"
+  },
   "price": {
     "type": "JourneyNet",
     "description": null,
     "amount": 3250,
     "currency": "GBP"
   },
-  "vehicleType": "Saloon"
+  "distance": 5164,
+  "notes": "Meet round by the side entrance"
 }
 ```
 
-## Book
+### Response
 
-## Update
-
-## Cancel
+```json
+{
+  "id": "any unique id",
+  "eta": 620
+}
+```

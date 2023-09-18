@@ -19,13 +19,19 @@ export default defineConfig({
         link: "/pages/auth",
       },
       {
-        text: "Requests",
+        text: "Workflow",
+        link: "/pages/workflow",
         items: [
-          { text: "Quote", link: "/pages/requests#quote" },
-          { text: "Book", link: "/pages/requests#book" },
-          { text: "Update", link: "/pages/requests#update" },
-          { text: "Cancel", link: "/pages/requests#cancel" },
+          { text: "Quote", link: "/pages/quote" },
+          { text: "Book", link: "/pages/book" },
+          { text: "Status", link: "/pages/status" },
+          { text: "Update", link: "/pages/update" },
+          { text: "Cancel", link: "/pages/cancel" },
         ],
+      },
+      {
+        text: "Reference Data",
+        link: "/pages/referencedata",
       },
       {
         text: "Testing",

@@ -4,7 +4,15 @@ outline: deep
 
 # Authentication
 
-To simplify how CMAC will authenticate with your API you should use basic authentication. This will mean that the API should be served over HTTPS/SSL and the username/password will be passed in an `Authorization` header with the value `Basic <credentials>` where credentials is a base64 encoded string made up of `username:password`
+Two types of authenticate are supported:
+
+- Basic
+
+The username and password will be passed in an `Authorization` header with the value `Basic <credentials>` where credentials is a base64 encoded string made up of `username:password`
+
+- OAuth 2.0
+
+A url is provided that will return a JWT
 
 ## Credentials
 
