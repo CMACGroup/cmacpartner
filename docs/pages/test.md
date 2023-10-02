@@ -2,48 +2,48 @@
 outline: deep
 ---
 
-# Runtime API Examples
+# Testing
 
-This page demonstrates usage of some of the runtime APIs provided by VitePress.
+Use this page to test your API implementation by sending requests so we can validate the responses.
 
-The main `useData()` API can be used to access site, theme, and page data for the current page. It works in both `.md` and `.vue` files:
+## API details
 
-```md
-<script setup>
-import { useData } from 'vitepress'
+<div class="input-field">
+<label for="username">Username:</label>
+<input type="text" id="username" maxlength="100">
+</div>
+<div class="input-field">
+<label for="password">Password:</label>
+<input type="text" id="password" maxlength="100">
+</div>
+<div class="input-field">
+<label for="baseUrl">Base Url:</label>
+<input type="text" id="baseUrl" maxlength="255">
+</div>
 
-const { theme, page, frontmatter } = useData()
+<script setup lang="ts">
+import { ref } from 'vue';
+import { quoteSchema, sampleQuote } from './schemas/requests';
+import ValidSchema from './components/ValidSchema.vue'
+import RequestInput from './components/RequestInput.vue'
+const requestContent:string = ref(sampleQuote)
 </script>
 
-## Results
+### Quote
 
-### Theme Data
-<pre>{{ theme }}</pre>
+<ValidSchema :request-content="requestContent" :schema="quoteSchema"></ValidSchema>
+<RequestInput v-model="requestContent"></RequestInput>
 
-### Page Data
-<pre>{{ page }}</pre>
+<style scoped>
 
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
-```
-
-<script setup>
-import { useData } from 'vitepress'
-
-const { site, theme, page, frontmatter } = useData()
-</script>
-
-## Results
-
-### Theme Data
-<pre>{{ theme }}</pre>
-
-### Page Data
-<pre>{{ page }}</pre>
-
-### Page Frontmatter
-<pre>{{ frontmatter }}</pre>
-
-## More
-
-Check out the documentation for the [full list of runtime APIs](https://vitepress.dev/reference/runtime-api#usedata).
+.input-field label {
+    display: inline-block;
+    width: 6rem;
+}
+.input-field input {
+    border-bottom: 1px solid darkgrey;
+    width: 30rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+</style>
