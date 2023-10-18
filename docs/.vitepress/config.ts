@@ -4,12 +4,43 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "CMAC Partners",
   description:
-    "Documentation to support partners of CMAC implement compliant APIs to enable the booking of transport",
+    "Documentation and testing to support partners of CMAC implement compliant APIs to enable the booking of transport",
+  sitemap: {
+    hostname: "https://cmacpartner.cmacgroup.com",
+  },
+  head: [
+    [
+      "link",
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/img/apple-touch-icon.png",
+      },
+    ],
+    [
+      "link",
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/img/favicon-32x32.png",
+      },
+    ],
+    [
+      "link",
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "/img/favicon-16x16.png",
+      },
+    ],
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
-      { text: "Test", link: "/pages/test" },
+      { text: "Testing", link: "/pages/test" },
       { text: "Submit Approval", link: "/pages/submitapproval" },
     ],
 

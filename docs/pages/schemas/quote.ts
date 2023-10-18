@@ -1,29 +1,11 @@
 import { z } from "zod";
-const vehicleTypeValues = [
-  "Saloon",
-  "WAV",
-  "MPV",
-  "Minibus",
-  "Exec",
-  "BlackCab",
-] as const;
-
-const stopSchema = z
-  .object({
-    pickupPoint: z.nullable(z.string().max(255).optional()),
-    address1: z.string().max(255),
-    address2: z.nullable(z.string().max(255).optional()),
-    town: z.nullable(z.string().max(255).optional()),
-    region: z.nullable(z.string().max(255).optional()),
-    postcode: z.string().max(20),
-    country: z.nullable(z.string().max(50).optional()),
-    isoCountry: z.string().length(2).trim().toUpperCase(),
-    lat: z.number().gte(-90).lte(90),
-    lng: z.number().gte(-180).lte(180),
-  })
-  .strict();
-
-const quoteSchema = z
+import {
+  vehicleTypeValues,
+  stopSchema,
+  vehicleAttributeValues,
+  priceSchema,
+} from "./common";
+const quoteRequestSchema = z
   .object({
     pickup: z.string().datetime({ offset: true }),
     stops: z
@@ -34,15 +16,24 @@ const quoteSchema = z
     distance: z.number().int(),
     vehicle: z.object({
       "type:": z.enum(vehicleTypeValues),
-      attributes: z.array(z.string().max(50)),
+      attributes: z.array(z.enum(vehicleAttributeValues)),
     }),
     paxCount: z.number().int().gt(0).lte(99),
   })
   .strict();
 
-type Quote = z.infer<typeof quoteSchema>;
+type QuoteRequest = z.infer<typeof quoteRequestSchema>;
 
-const sampleQuote: string = `{
+const quoteResponseSchema = z
+  .object({
+    eta: z.number().int().optional(),
+    price: priceSchema,
+  })
+  .strict();
+
+type QuoteResponse = z.infer<typeof quoteResponseSchema>;
+
+const sampleQuoteRequest: string = `{
   "pickup": "2023-02-01T18:30:00+01:00",
   "stops": [
     {
@@ -74,4 +65,11 @@ const sampleQuote: string = `{
   },
   "paxCount": 2
 }`;
-export { quoteSchema, Quote, sampleQuote };
+
+export {
+  quoteRequestSchema,
+  QuoteRequest,
+  quoteResponseSchema,
+  QuoteResponse,
+  sampleQuoteRequest,
+};

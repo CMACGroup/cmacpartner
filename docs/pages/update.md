@@ -1,11 +1,14 @@
 # Update
 
+After a request to `book` a journey has been made, there may be later alterations, particularly for pre-booked journeys, that need to communicated. This endpoint allows us to make those changes and should replace the details of the booking at the Id specified.
+
 ## Details
 
 |             |                                                |
 | ----------- | ---------------------------------------------- |
 | Url         | https://_\<your custom url\>_**/update**/\<id> |
 | Method      | PUT                                            |
+| HTTP Header | Content-Type: application/json                 |
 | HTTP Header | Accept: application/json                       |
 | Format      | JSON                                           |
 |             |                                                |

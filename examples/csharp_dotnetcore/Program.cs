@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
+    .AddCors()
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
     .AddAuthentication("BasicAuthentication")
@@ -16,7 +17,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger().UseSwaggerUI();
 }
-
+app.UseCors(o => o
+    .SetIsOriginAllowed(url => true)
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials());
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapRoutes();

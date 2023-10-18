@@ -9,11 +9,14 @@ public class QuoteRequest : IValidatableObject
     public Address[] Stops { get; set; } = Array.Empty<Address>();
     
     [Required]
-    public string VehicleType { get; set; } = VehicleTypes.Saloon;
+    public VehicleType Vehicle { get; set; }
     
     [Range(1, 100)]
     public int PaxCount { get; set; }
 
+    [Range(0, int.MaxValue)]
+    public int Distance { get; set; }
+    
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (Pickup > DateTimeOffset.Now.AddMonths(6))

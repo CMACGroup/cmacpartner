@@ -8,9 +8,9 @@ or
 
 Quote -> Book -> Cancel
 
-unless the operator cancels it their side and therefore sends the status Cancelled or NoShow.
+unless the operator cancels it their side and therefore sends the status [Cancelled](/pages/referencedata#booking-status) or [NoShow](/pages/referencedata#booking-status).
 
-## Updates
+## Updates and Hooks
 
 If possible the operator system should send updates to https://cmacpartner.cmacgroup.com/updates containing the following payload. If it is not possible to automate the sending of updates then CMAC will request an update for a booking at least once per minute. Updates can be sent every time there is a "status" change to a booking or simply when the GPS location of the vehicle is updated.
 
@@ -53,7 +53,7 @@ If possible the operator system should send updates to https://cmacpartner.cmacg
 
 CMAC will respond with a 200 OK success upon receipt of an update but they are processed in the background, so even if the booking cannot be found, no error is returned.
 
-## HTTP
+## HTTP Responses and Errors
 
 When implementing the endpoints you should adhere to the HTTP standard https://www.rfc-editor.org/rfc/rfc2616 but most importantly:
 

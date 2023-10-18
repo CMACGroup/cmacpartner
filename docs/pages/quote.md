@@ -1,11 +1,14 @@
 # Quote
 
+Used to obtain an estimated price and optional ETA if you can cover a booking with the specified details. If you cannot cover then just return a 204 - No Content.
+
 ## Details
 
 |             |                                         |
 | ----------- | --------------------------------------- |
 | Url         | https://_\<your custom url\>_**/quote** |
 | Method      | POST                                    |
+| HTTP Header | Content-Type: application/json          |
 | HTTP Header | Accept: application/json                |
 | Format      | JSON                                    |
 |             |                                         |

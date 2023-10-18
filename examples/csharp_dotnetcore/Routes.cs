@@ -10,7 +10,7 @@ public static class Routes
             .WithParameterValidation()
             .Produces<QuoteResponse>();
 
-        app.MapGroup("/booking")
+        app.MapGroup("/book")
             .MapBookingApi()
             .WithParameterValidation();
 
@@ -31,14 +31,14 @@ public static class Routes
 
         return group;
     }
-    
-    private static void GetQuote(QuoteRequest model)
+
+    private static IResult GetQuote(QuoteRequest model)
     {
         // is the vehicle type requested, supported?
         // are we fully booked?
         // get the nearest vehicle
         // calculate a price
-        Results.Ok(new QuoteResponse
+        return Results.Ok(new QuoteResponse
         {
             Eta = 610,
             Price = new Price
@@ -47,44 +47,70 @@ public static class Routes
                 Amount = 2850,
                 Currency = PriceCurrencies.GBP,
             },
-            VehicleType = VehicleTypes.Saloon,
         });
     }
 
-    private static void CreateBooking(BookRequest model)
+    private static IResult CreateBooking(BookRequest model)
     {
-        Results.Ok(new BookResponse
+        return Results.Ok(new BookResponse
         {
             Id = Guid.NewGuid().ToString(),
             Eta = 610,
         });
     }
 
-    private static void GetBooking(string id)
+    private static IResult GetBooking(string id)
     {
         // retrieve booking by id
-        Results.Ok(new FullBookResponse
+        return Results.Ok(new FullBookResponse
         {
             Id = id,
-            VehicleType = VehicleTypes.Saloon,
+            VehicleType = "Saloon",
             Pickup = DateTimeOffset.Now.AddHours(4),
-            Notes = "Some special notes",
             Reference = "YourReference",
-            Status = "DROPPEDOFF",
-            Stops = new[] { new Address(), new Address() },
-            PaxCount = 2,
-            PaxName = "Mr Tester",
-            PaxPhone = "0123456789",
-            Driver = new Driver
+            Status = "DroppedOff",
+            Stops = new[]
             {
-                Name = "Mr Driver",
-                Phone = "987654321",
-                Image = "https://driversimages.com/abcdefgh",
-                VehicleDescription = "White Toyata Prius",
-                VehicleNumber = "ABC1 1AA",
-                Lat = 51.424f,
-                Lng = -1.0165f,
+                new Address
+                {
+                    Address1 = "17 The Street",
+                    Address2 = "Over here",
+                    Region = "Testchester",
+                    Postcode = "AA1 1AA",
+                    Country = "England",
+                    IsoCountry = "GB",
+                    Lat = 52.42553f,
+                    Lng = -1.2974f,
+                },
+                new Address
+                {
+                    Address1 = "45 Destination Avenue",
+                    Postcode = "SH4 6WE",
+                    Country = "England",
+                    IsoCountry = "GB",
+                    Lat = 53.9173f,
+                    Lng = -1.3254f,
+                },
             },
+            PaxCount = 2,
+            Passenger = new PassengerType
+            {
+                Name = "Mr Tester",
+                Number = "0123456789",
+            },
+            Vehicle = new VehicleType
+            {
+                Vrn = "ABC1 1AA",
+                Description = "White Toyata Prius",
+                Driver = new Driver
+                {
+                    Name = "Mr Driver",
+                    Number = "987654321",
+                    Image = "https://driversimages.com/abcdefgh",
+                },
+            },
+            Lat = 52.42553f,
+            Lng = -1.2974f,
             Prices = new[]
             {
                 new Price
@@ -101,19 +127,13 @@ public static class Routes
                 },
                 new Price
                 {
-                    Type = PriceTypes.WaitingNet,
+                    Type = PriceTypes.Waiting,
                     Amount = 1000,
                     Currency = PriceCurrencies.GBP,
                 },
                 new Price
                 {
-                    Type = PriceTypes.WaitingTax,
-                    Amount = 0,
-                    Currency = PriceCurrencies.GBP,
-                },
-                new Price
-                {
-                    Type = PriceTypes.ParkingNet,
+                    Type = PriceTypes.Parking,
                     Amount = 250,
                     Currency = PriceCurrencies.GBP,
                 },
@@ -121,16 +141,22 @@ public static class Routes
         });
     }
 
-    private static void UpdateBooking(string id, BookRequest model)
+    private static IResult UpdateBooking(string id, BookRequest model)
     {
         // retrieve booking by id
         // make updates/changes and notify driver if necessary
-        Results.Ok();
+        // return new booking id (if it has to change) otherwise the same id
+        return Results.Ok(new BookResponse
+        {
+            Id = Guid.NewGuid().ToString(),
+            Eta = 610,
+        });
     }
 
-    private static void CancelBooking(string id)
+    private static IResult CancelBooking(string id)
     {
         // retrieve booking by id and cancel
-        Results.Ok();
+        // return an empty body with success HTTP code
+        return Results.Ok();
     }
 }

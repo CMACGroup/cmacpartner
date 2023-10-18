@@ -1,11 +1,14 @@
 # Book
 
+Used to place a new booking. The returned id enables us to contact you and make further changes or cancel the booking if required.
+
 ## Details
 
 |             |                                        |
 | ----------- | -------------------------------------- |
 | Url         | https://_\<your custom url\>_**/book** |
 | Method      | POST                                   |
+| HTTP Header | Content-Type: application/json         |
 | HTTP Header | Accept: application/json               |
 | Format      | JSON                                   |
 |             |                                        |

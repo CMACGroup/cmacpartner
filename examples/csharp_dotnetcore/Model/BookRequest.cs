@@ -9,8 +9,8 @@ public class BookRequest : IValidatableObject
     public Address[] Stops { get; set; } = Array.Empty<Address>();
     
     [Required]
-    public string VehicleType { get; set; } = VehicleTypes.Saloon;
-    
+    public string VehicleType { get; set; } = null!;
+
     [Range(1, 100)]
     public int PaxCount { get; set; }
     
