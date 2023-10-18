@@ -86,3 +86,7 @@ Response contents for a 409 status
   "error": "There are no vehicles available"
 }
 ```
+
+## Support
+
+If you have any questions that you would like to us to clarify you can send them to [support@cmacgroup.com](mailto:support@cmacgroup.com).
