@@ -4,6 +4,85 @@ namespace CmacPartnerApi;
 
 public static class Routes
 {
+    private static readonly FullBookResponse DummyBookResponse = new()
+    {
+        Id = "123456",
+        Pickup = DateTimeOffset.Now.AddHours(4),
+        Reference = "YourReference",
+        Status = BookingStatus.DroppedOff,
+        Stops = new[]
+        {
+            new Address
+            {
+                Address1 = "17 The Street",
+                Address2 = "Over here",
+                Region = "Testchester",
+                Postcode = "AA1 1AA",
+                Country = "England",
+                IsoCountry = "GB",
+                Lat = 52.42553f,
+                Lng = -1.2974f,
+            },
+            new Address
+            {
+                Address1 = "45 Destination Avenue",
+                Postcode = "SH4 6WE",
+                Country = "England",
+                IsoCountry = "GB",
+                Lat = 53.9173f,
+                Lng = -1.3254f,
+            },
+        },
+        PaxCount = 2,
+        Passenger = new Passenger
+        {
+            Name = "Mr Tester",
+            Number = "0123456789",
+        },
+        Vehicle = new VehicleWithDetails()
+        {
+            Type = VehicleType.Saloon,
+            Vrn = "ABC1 1AA",
+            Description = "White Toyata Prius",
+            Driver = new Driver
+            {
+                Name = "Mr Driver",
+                Number = "987654321",
+                Image = "https://driversimages.com/abcdefgh",
+            },
+        },
+        Lat = 52.42553f,
+        Lng = -1.2974f,
+        Prices = new[]
+        {
+            new Price
+            {
+                Type = PriceType.JourneyNet,
+                Amount = 2850,
+                Currency = Currencies.GBP,
+            },
+            new Price
+            {
+                Type = PriceType.JourneyTax,
+                Amount = 150,
+                Currency = Currencies.GBP,
+            },
+            new Price
+            {
+                Type = PriceType.Waiting,
+                Amount = 1000,
+                Currency = Currencies.GBP,
+                Attributes = new[] { new KeyValuePair<string, string>("Minutes", "10") },
+            },
+            new Price
+            {
+                Type = PriceType.Parking,
+                Amount = 250,
+                Currency = Currencies.GBP,
+            },
+        },
+    };
+    
     public static WebApplication MapRoutes(this WebApplication app)
     {
         app.MapPost("/quote", GetQuote)
@@ -40,13 +119,16 @@ public static class Routes
         // calculate a price
         return Results.Ok(new QuoteResponse
         {
-            Eta = 610,
-            Price = new Price
+            Quotes = new[]{new QuoteResponseEntry
             {
-                Type = PriceTypes.JourneyNet,
-                Amount = 2850,
-                Currency = PriceCurrencies.GBP,
-            },
+                Eta = 610,
+                Price = new Price
+                {
+                    Type = PriceType.JourneyNet,
+                    Amount = 2850,
+                    Currency = Currencies.GBP,
+                },
+            }}
         });
     }
 
@@ -62,83 +144,7 @@ public static class Routes
     private static IResult GetBooking(string id)
     {
         // retrieve booking by id
-        return Results.Ok(new FullBookResponse
-        {
-            Id = id,
-            VehicleType = "Saloon",
-            Pickup = DateTimeOffset.Now.AddHours(4),
-            Reference = "YourReference",
-            Status = "DroppedOff",
-            Stops = new[]
-            {
-                new Address
-                {
-                    Address1 = "17 The Street",
-                    Address2 = "Over here",
-                    Region = "Testchester",
-                    Postcode = "AA1 1AA",
-                    Country = "England",
-                    IsoCountry = "GB",
-                    Lat = 52.42553f,
-                    Lng = -1.2974f,
-                },
-                new Address
-                {
-                    Address1 = "45 Destination Avenue",
-                    Postcode = "SH4 6WE",
-                    Country = "England",
-                    IsoCountry = "GB",
-                    Lat = 53.9173f,
-                    Lng = -1.3254f,
-                },
-            },
-            PaxCount = 2,
-            Passenger = new PassengerType
-            {
-                Name = "Mr Tester",
-                Number = "0123456789",
-            },
-            Vehicle = new VehicleType
-            {
-                Vrn = "ABC1 1AA",
-                Description = "White Toyata Prius",
-                Driver = new Driver
-                {
-                    Name = "Mr Driver",
-                    Number = "987654321",
-                    Image = "https://driversimages.com/abcdefgh",
-                },
-            },
-            Lat = 52.42553f,
-            Lng = -1.2974f,
-            Prices = new[]
-            {
-                new Price
-                {
-                    Type = PriceTypes.JourneyNet,
-                    Amount = 2850,
-                    Currency = PriceCurrencies.GBP,
-                },
-                new Price
-                {
-                    Type = PriceTypes.JourneyTax,
-                    Amount = 150,
-                    Currency = PriceCurrencies.GBP,
-                },
-                new Price
-                {
-                    Type = PriceTypes.Waiting,
-                    Amount = 1000,
-                    Currency = PriceCurrencies.GBP,
-                },
-                new Price
-                {
-                    Type = PriceTypes.Parking,
-                    Amount = 250,
-                    Currency = PriceCurrencies.GBP,
-                },
-            },
-        });
+        return Results.Ok(DummyBookResponse);
     }
 
     private static IResult UpdateBooking(string id, BookRequest model)
@@ -156,7 +162,7 @@ public static class Routes
     private static IResult CancelBooking(string id)
     {
         // retrieve booking by id and cancel
-        // return an empty body with success HTTP code
-        return Results.Ok();
+        // return a full response with any costs that may have been incurred e.g. waiting time etc
+        return Results.Ok(DummyBookResponse);
     }
 }

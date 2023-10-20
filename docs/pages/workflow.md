@@ -10,6 +10,10 @@ Quote -> Book -> Cancel
 
 unless the operator cancels it their side and therefore sends the status [Cancelled](/pages/referencedata#booking-status) or [NoShow](/pages/referencedata#booking-status).
 
+## Multiple operators
+
+There may be the requirement that a single integration between ourselves needs to target multiple operators. If this is the case, certain requests/responses allow for the passing of an `operatorId`. If there is only a single operator within your system, this property can be ignored/omitted. Note however that each of these individual operators will need creating in our system individually as they may need to invoice independently. If this is the case, please communicate the list of operators and their ids to our supply team [supplier.relations@cmacgroup.com](mailto:supplier.relations@cmacgroup.com).
+
 ## Updates and Hooks
 
 If possible the operator system should send updates to https://cmacpartner.cmacgroup.com/updates containing the following payload. If it is not possible to automate the sending of updates then CMAC will request an update for a booking at least once per minute. Updates can be sent every time there is a "status" change to a booking or simply when the GPS location of the vehicle is updated.
@@ -19,28 +23,26 @@ If possible the operator system should send updates to https://cmacpartner.cmacg
 ```json
 {
   "id": "Your unique id",
-  "dateTime": "2023-06-05T16:03:02Z",
+  "pickup": "2023-02-01T18:30:00+01:00",
   "status": "Arrived",
   "prices": [
     {
       "type": "JourneyNet",
-      "description": null,
       "amount": 3250,
-      "currency": "GBP",
-      "attributes": [{ "key": "Minutes", "value": "15" }]
+      "currency": "GBP"
     },
     {
       "type": "Waiting",
       "description": "15 minutes waiting",
       "amount": 800,
       "currency": "GBP",
-      "attributes": []
+      "attributes": [{ "key": "Minutes", "value": "15" }]
     }
   ],
   "lat": 53.9173,
   "lng": -1.3254,
   "vehicle": {
-    "vrn": "AB1 1AA",
+    "vrn": "ML123 3XX",
     "description": "White Toyota Prius",
     "driver": {
       "name": "Tester Driver Person",

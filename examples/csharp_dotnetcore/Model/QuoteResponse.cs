@@ -2,6 +2,5 @@
 
 public class QuoteResponse
 {
-    public int? Eta { get; set; }
-    public Price Price { get; set; } = null!;
+    public QuoteResponseEntry[] Quotes { get; set; } = Array.Empty<QuoteResponseEntry>();
 }

@@ -46,7 +46,7 @@ This request is used to retrieve the current status of the booking and/or it's p
       "lng": -1.3254
     }
   ],
-  "vehicleType": "Saloon",
+  "status": "PickedUp",
   "paxCount": 2,
   "reference": "ABC123:XYZ456",
   "passenger": {
@@ -70,6 +70,8 @@ This request is used to retrieve the current status of the booking and/or it's p
   "lat": 53.9173,
   "lng": -1.3254,
   "vehicle": {
+    "type": "Saloon",
+    "attributes": [],
     "vrn": "AB1 1AA",
     "description": "White Toyota Prius",
     "driver": {

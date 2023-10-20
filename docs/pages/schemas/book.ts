@@ -3,13 +3,17 @@ import { vehicleTypeValues, priceSchema, stopSchema } from "./common";
 
 const bookRequestSchema = z
   .object({
+    operatorId: z.string().max(50).optional(),
     pickup: z.string().datetime({ offset: true }),
     stops: z
       .array(stopSchema)
       .refine((x) => x && x.length > 1 && x.length < 10, {
         message: "There must be at least 2 stops and no more than 10",
       }),
-    vehicleType: z.enum(vehicleTypeValues),
+    vehicle: z.object({
+      type: z.enum(vehicleTypeValues),
+      attributes: z.array(z.string()).optional(),
+    }),
     paxCount: z.number().int().gt(0).lte(99),
     reference: z.string().max(50),
     passenger: z
@@ -60,7 +64,10 @@ const sampleBookRequest: string = `{
         "lng": -1.3254
       }
     ],
-    "vehicleType": "Saloon",
+    "vehicle": {
+      "type": "Saloon",
+      "attributes": []
+    },
     "paxCount": 2,
     "reference": "ABC123:XYZ456",
     "passenger": {

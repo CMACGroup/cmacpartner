@@ -9,7 +9,7 @@ Once you have successfully used the [Testing](/pages/test) page to run validatio
 
 We ask that you submit details for both your testing and production environments. This enables us to create some automated tests
 
-If you've already submitted an approval request and simply need an update, you can contact us by email on [supplierrelations@cmacgroup.com](mailto:supplierrelations@cmacgroup.com).
+If you've already submitted an approval request and simply need an update, you can contact us by email on [supplier.relations@cmacgroup.com](mailto:supplier.relations@cmacgroup.com).
 
 <div class="input-field">
 <label for="companyname">Name:</label>

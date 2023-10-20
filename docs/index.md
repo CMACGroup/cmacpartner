@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: Get started
-      link: /pages/workflow
+      link: /pages/auth
 
 features:
   - title: More bookings

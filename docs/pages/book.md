@@ -19,6 +19,7 @@ Used to place a new booking. The returned id enables us to contact you and make 
 
 ```json
 {
+  "operatorId": "12345789",
   "pickup": "2023-02-01T18:30:00+01:00",
   "stops": [
     {
@@ -46,7 +47,10 @@ Used to place a new booking. The returned id enables us to contact you and make 
       "lng": -1.3254
     }
   ],
-  "vehicleType": "Saloon",
+  "vehicle": {
+    "type": "Saloon",
+    "attributes": ["Pets"]
+  },
   "paxCount": 2,
   "reference": "ABC123:XYZ456",
   "passenger": {
@@ -55,7 +59,6 @@ Used to place a new booking. The returned id enables us to contact you and make 
   },
   "price": {
     "type": "JourneyNet",
-    "description": null,
     "amount": 3250,
     "currency": "GBP"
   },

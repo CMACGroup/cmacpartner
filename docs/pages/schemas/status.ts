@@ -16,7 +16,6 @@ const statusResponseSchema = z
         message: "There must be at least 2 stops and no more than 10",
       }),
     status: z.enum(statusTypeValues),
-    vehicleType: z.enum(vehicleTypeValues),
     paxCount: z.number().int().gt(0).lte(99),
     reference: z.string().max(50),
     passenger: z
@@ -29,6 +28,8 @@ const statusResponseSchema = z
     lat: z.number().gte(-90).lte(90).optional(),
     lng: z.number().gte(-180).lte(180).optional(),
     vehicle: z.object({
+      type: z.enum(vehicleTypeValues),
+      attributes: z.array(z.string()).optional(),
       vrn: z.string().max(20),
       description: z.string().max(255),
       driver: z

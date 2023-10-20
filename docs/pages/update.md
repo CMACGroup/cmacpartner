@@ -19,7 +19,6 @@ After a request to `book` a journey has been made, there may be later alteration
 
 ```json
 {
-  "id": "Unique id",
   "pickup": "2023-02-01T18:30:00+01:00",
   "stops": [
     {
@@ -47,12 +46,18 @@ After a request to `book` a journey has been made, there may be later alteration
       "lng": -1.3254
     }
   ],
-  "vehicleType": "Saloon",
+  "vehicle": {
+    "type": "Saloon",
+    "attributes": ["Pets"]
+  },
   "paxCount": 2,
   "reference": "ABC123:XYZ456",
+  "passenger": {
+    "name": "Mr McTestit",
+    "number": "0778899955"
+  },
   "price": {
     "type": "JourneyNet",
-    "description": null,
     "amount": 3250,
     "currency": "GBP"
   },
@@ -66,7 +71,6 @@ After a request to `book` a journey has been made, there may be later alteration
 ```json
 {
   "id": "any unique id",
-  "eta": 620,
-  "vehicleType": "Saloon"
+  "eta": 620
 }
 ```

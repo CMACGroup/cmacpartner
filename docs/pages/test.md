@@ -36,9 +36,6 @@ import {
     bookResponseSchema, 
     sampleBookRequest, 
     statusResponseSchema, 
-    updateRequestSchema, 
-    updateResponseSchema, 
-    sampleUpdateRequest
      } from './schemas';
 import { useRequestTests } from './composables/useRequestTests'
 import ValidSchema from './components/ValidSchema.vue'
@@ -57,12 +54,12 @@ const statusResponseContent:StatusResponse = ref(null)
 const statusResponseError:ErrorResponse = ref(null)
 
 const updateRequestId = ref('')
-const updateRequestContent = ref(sampleUpdateRequest)
-const updateResponseContent:UpdateResponse = ref(null)
+const updateRequestContent = ref(sampleBookRequest)
+const updateResponseContent:BookResponse = ref(null)
 const updateResponseError:ErrorResponse = ref(null)
 
 const cancelRequestId = ref('')
-const cancelResponseContent:CancelResponse = ref(null)
+const cancelResponseContent:StatusResponse = ref(null)
 const cancelResponseError:ErrorResponse = ref(null)
 
 const bookingIdRequiredStatus = JSON.stringify({
@@ -155,7 +152,7 @@ const testCancel = async() => {
 
 ### Update
 
-<ValidSchema :request-content="updateRequestContent" :schema="updateRequestSchema"></ValidSchema>
+<ValidSchema :request-content="updateRequestContent" :schema="bookRequestSchema"></ValidSchema>
 
 <div class="input-field">
 <label for="updateBookingId">Booking Id:</label>
@@ -163,7 +160,7 @@ const testCancel = async() => {
 </div>
 <RequestInput v-model="updateRequestContent"></RequestInput>
 <button class="button" v-if="!loading" @click="testUpdate">Send</button>
-<ValidSchema :content="updateResponseContent" :schema="updateResponseSchema" :error="updateResponseError" include-content></ValidSchema>
+<ValidSchema :content="updateResponseContent" :schema="bookResponseSchema" :error="updateResponseError" include-content></ValidSchema>
 
 <hr/>
 
@@ -174,6 +171,6 @@ const testCancel = async() => {
 <input type="text" id="cancelBookingId" maxlength="255" v-model="cancelRequestId">
 </div>
 <button class="button" v-if="!loading" @click="testCancel">Send</button>
-<ValidSchema :content="cancelResponseContent" success-if-empty :error="cancelResponseError"></ValidSchema>
+<ValidSchema :content="cancelResponseContent" :schema="statusResponseSchema" :error="cancelResponseError" include-content></ValidSchema>
 
 <hr/>

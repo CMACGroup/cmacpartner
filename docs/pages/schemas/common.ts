@@ -55,6 +55,9 @@ const priceSchema = z
     description: z.nullable(z.string().max(255).optional()),
     amount: z.number().int().gte(0).lte(99999999),
     currency: z.string().length(3).trim().toUpperCase(),
+    attributes: z
+      .array(z.object({ key: z.string(), value: z.string() }))
+      .optional(),
   })
   .strict();
 

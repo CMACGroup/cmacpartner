@@ -4,12 +4,14 @@ namespace CmacPartnerApi.Model;
 
 public class BookRequest : IValidatableObject
 {
+    public string? OperatorId { get; set; }
+    
     public DateTimeOffset Pickup { get; set; } = DateTimeOffset.Now;
     
     public Address[] Stops { get; set; } = Array.Empty<Address>();
     
     [Required]
-    public string VehicleType { get; set; } = null!;
+    public Vehicle Vehicle { get; set; } = null!;
 
     [Range(1, 100)]
     public int PaxCount { get; set; }

@@ -9,8 +9,8 @@ public class QuoteRequest : IValidatableObject
     public Address[] Stops { get; set; } = Array.Empty<Address>();
     
     [Required]
-    public VehicleType Vehicle { get; set; }
-    
+    public Vehicle Vehicle { get; set; } = null!;
+
     [Range(1, 100)]
     public int PaxCount { get; set; }
 
@@ -20,11 +20,11 @@ public class QuoteRequest : IValidatableObject
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
         if (Pickup > DateTimeOffset.Now.AddMonths(6))
-            yield return new ValidationResult("Can only accept bookings within the next 6 months",
+            yield return new ValidationResult("Can only accept bookings that depart in the next 6 months",
                 new[] { nameof(Pickup) });
         
         if (Stops.Length < 2)
-            yield return new ValidationResult("There must be at least 2 stops i.e. start and end locations",
+            yield return new ValidationResult("There must be at least 2 stops i.e. pickup and drop off",
                 new[] { nameof(Stops) });
     }
 }

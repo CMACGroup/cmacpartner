@@ -15,8 +15,8 @@ const quoteRequestSchema = z
       }),
     distance: z.number().int(),
     vehicle: z.object({
-      "type:": z.enum(vehicleTypeValues),
-      attributes: z.array(z.enum(vehicleAttributeValues)),
+      type: z.enum(vehicleTypeValues),
+      attributes: z.array(z.enum(vehicleAttributeValues)).optional(),
     }),
     paxCount: z.number().int().gt(0).lte(99),
   })
@@ -24,12 +24,15 @@ const quoteRequestSchema = z
 
 type QuoteRequest = z.infer<typeof quoteRequestSchema>;
 
-const quoteResponseSchema = z
-  .object({
-    eta: z.number().int().optional(),
-    price: priceSchema,
-  })
-  .strict();
+const quoteResponseSchema = z.object({
+  quotes: z.array(
+    z.object({
+      operatorId: z.string().max(50).optional(),
+      eta: z.number().int().optional(),
+      price: priceSchema,
+    })
+  ),
+});
 
 type QuoteResponse = z.infer<typeof quoteResponseSchema>;
 
@@ -60,7 +63,7 @@ const sampleQuoteRequest: string = `{
   ],
   "distance": 5164,
   "vehicle": {
-    "type:": "Saloon",
+    "type": "Saloon",
     "attributes": []
   },
   "paxCount": 2

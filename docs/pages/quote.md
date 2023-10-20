@@ -1,6 +1,6 @@
 # Quote
 
-Used to obtain an estimated price and optional ETA if you can cover a booking with the specified details. If you cannot cover then just return a 204 - No Content.
+Used to obtain estimated prices (per operator) and optional ETA if you can cover a booking with the specified details. If you cannot cover then just return an empty array.
 
 ## Details
 
@@ -59,13 +59,17 @@ Used to obtain an estimated price and optional ETA if you can cover a booking wi
 
 ```json
 {
-  "eta": 620,
-  "price": {
-    "type": "JourneyNet",
-    "description": null,
-    "amount": 3250,
-    "currency": "GBP"
-  }
+  "quotes": [
+    {
+      "operatorId": "123456789",
+      "eta": 620,
+      "price": {
+        "type": "JourneyNet",
+        "amount": 3250,
+        "currency": "GBP"
+      }
+    }
+  ]
 }
 ```
 
