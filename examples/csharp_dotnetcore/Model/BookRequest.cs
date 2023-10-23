@@ -25,6 +25,11 @@ public class BookRequest : IValidatableObject
     [Required]
     public string Reference { get; set; } = null!;
     
+    [Range(0, int.MaxValue)]
+    public int Distance { get; set; }
+
+    public Price Price { get; set; } = null!;
+
     [StringLength(255)]
     public string? Notes { get; set; }
     
