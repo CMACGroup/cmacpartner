@@ -25,6 +25,7 @@ const bookRequestSchema = z
     price: priceSchema,
     distance: z.number().int(),
     notes: z.string().max(255).optional(),
+    flightNumber: z.string().max(255).optional(),
   })
   .strict();
 
@@ -80,7 +81,8 @@ const sampleBookRequest: string = `{
       "currency": "GBP"
     },
     "distance": 5164,
-    "notes": "Meet round by the side entrance"    
+    "notes": "Meet round by the side entrance",
+    "flightNumber": "BA1234"    
   }`;
 
 export {

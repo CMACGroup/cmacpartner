@@ -62,7 +62,8 @@ After a request to `book` a journey has been made, there may be later alteration
     "currency": "GBP"
   },
   "distance": 5164,
-  "notes": "Meet round by the side entrance"
+  "notes": "Meet round by the side entrance",
+  "flightNumber": "BA1234"
 }
 ```
 

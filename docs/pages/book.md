@@ -63,7 +63,8 @@ Used to place a new booking. The returned id enables us to contact you and make 
     "currency": "GBP"
   },
   "distance": 5164,
-  "notes": "Meet round by the side entrance"
+  "notes": "Meet round by the side entrance",
+  "flightNumber": "BA1234"
 }
 ```
 

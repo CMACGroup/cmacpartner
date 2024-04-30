@@ -32,6 +32,9 @@ public class BookRequest : IValidatableObject
 
     [StringLength(255)]
     public string? Notes { get; set; }
+
+    [StringLength(255)]
+    public string? FlightNumber { get; set; }
     
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
