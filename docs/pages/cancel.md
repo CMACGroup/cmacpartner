@@ -46,7 +46,6 @@ This request is used to cancel a booking immediately. There is the possibility t
       "lng": -1.3254
     }
   ],
-  "vehicleType": "Saloon",
   "paxCount": 2,
   "reference": "ABC123:XYZ456",
   "passenger": {
@@ -70,6 +69,7 @@ This request is used to cancel a booking immediately. There is the possibility t
   "lat": 53.9173,
   "lng": -1.3254,
   "vehicle": {
+    "type": "Saloon",
     "vrn": "AB1 1AA",
     "description": "White Toyota Prius",
     "driver": {
