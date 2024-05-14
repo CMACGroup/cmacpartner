@@ -46,6 +46,7 @@ This request is used to cancel a booking immediately. There is the possibility t
       "lng": -1.3254
     }
   ],
+  "status": "Cancelled",
   "paxCount": 2,
   "reference": "ABC123:XYZ456",
   "passenger": {

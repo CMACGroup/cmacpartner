@@ -46,6 +46,7 @@ After a request to `book` a journey has been made, there may be later alteration
       "lng": -1.3254
     }
   ],
+  "status": "Booked",
   "vehicle": {
     "type": "Saloon",
     "attributes": ["Pets"]
