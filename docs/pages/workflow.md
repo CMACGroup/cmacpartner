@@ -16,7 +16,7 @@ There may be the requirement that a single integration between ourselves needs t
 
 ## Updates and Hooks
 
-If possible the operator system should send updates to https://cmacpartner.cmacgroup.com/updates containing the following payload. If it is not possible to automate the sending of updates then CMAC will request an update for a booking at least once per minute. Updates can be sent every time there is a "status" change to a booking or simply when the GPS location of the vehicle is updated.
+If possible the operator system should send updates to https://api.cmacgroup.com/cmacpartner/statusupdate containing the following payload. If it is not possible to automate the sending of updates then CMAC will request an update for a booking at least once per minute. Updates can be sent every time there is a "status" change to a booking or simply when the GPS location of the vehicle is updated.
 
 ### Payload
 

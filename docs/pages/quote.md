@@ -48,7 +48,7 @@ Used to obtain estimated prices (per operator) and optional ETA if you can cover
   ],
   "distance": 5164,
   "vehicle": {
-    "type:": "Saloon",
+    "type": "Saloon",
     "attributes": []
   },
   "paxCount": 2
