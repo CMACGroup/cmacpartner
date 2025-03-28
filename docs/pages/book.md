@@ -60,11 +60,19 @@ Used to place a new booking. The returned id enables us to contact you and make 
   "price": {
     "type": "JourneyNet",
     "amount": 3250,
-    "currency": "GBP"
+    "currency": "GBP",
+    "attributes" : {
+      "attribute1" : "Value1",
+      "attribute2" : "Value2"
+    }
   },
   "distance": 5164,
   "notes": "Meet round by the side entrance",
-  "flightNumber": "BA1234"
+  "flightNumber": "BA1234",
+  "attributes" : {
+    "attribute1" : "Value1",
+    "attribute2" : "Value2"
+  }
 }
 ```
 
