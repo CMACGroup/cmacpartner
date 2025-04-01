@@ -84,7 +84,7 @@ const sampleBookRequest: string = `{
     "price": {
       "type": "JourneyNet",
       "amount": 3250,
-      "currency": "GBP"
+      "currency": "GBP",
       "attributes" : {
         "attribute1" : "Value1",
         "attribute2" : "Value2"
