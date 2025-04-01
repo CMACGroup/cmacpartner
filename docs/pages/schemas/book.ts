@@ -26,6 +26,12 @@ const bookRequestSchema = z
     distance: z.number().int(),
     notes: z.string().max(255).optional(),
     flightNumber: z.string().max(255).optional(),
+    attributes: z
+      .object({
+        attribute1: z.string(),
+        attribute2: z.string(),
+      })
+      .optional(),
   })
   .strict();
 
@@ -79,10 +85,18 @@ const sampleBookRequest: string = `{
       "type": "JourneyNet",
       "amount": 3250,
       "currency": "GBP"
+      "attributes" : {
+        "attribute1" : "Value1",
+        "attribute2" : "Value2"
+      }
     },
     "distance": 5164,
     "notes": "Meet round by the side entrance",
-    "flightNumber": "BA1234"    
+    "flightNumber": "BA1234",
+    "attributes" : {
+      "attribute1" : "Value1",
+      "attribute2" : "Value2"
+    }    
   }`;
 
 export {

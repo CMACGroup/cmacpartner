@@ -56,7 +56,10 @@ const priceSchema = z
     amount: z.number().int().gte(0).lte(99999999),
     currency: z.string().length(3).trim().toUpperCase(),
     attributes: z
-      .array(z.object({ key: z.string(), value: z.string() }))
+      .object({
+        attribute1: z.string(),
+        attribute2: z.string(),
+      })
       .optional(),
   })
   .strict();
