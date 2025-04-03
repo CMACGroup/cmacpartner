@@ -60,11 +60,19 @@ After a request to `book` a journey has been made, there may be later alteration
   "price": {
     "type": "JourneyNet",
     "amount": 3250,
-    "currency": "GBP"
+    "currency": "GBP",
+    "attributes" : {
+      "attribute1" : "Value1",
+      "attribute2" : "Value2"
+    }
   },
   "distance": 5164,
   "notes": "Meet round by the side entrance",
-  "flightNumber": "BA1234"
+  "flightNumber": "BA1234",
+  "attributes" : {
+    "attribute1" : "Value1",
+    "attribute2" : "Value2"
+  }
 }
 ```
 
