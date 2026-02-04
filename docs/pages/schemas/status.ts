@@ -37,6 +37,7 @@ const statusResponseSchema = z
           name: z.string().max(255),
           number: z.string().max(50).optional(),
           image: z.string().max(1000).optional(),
+          callsign: z.string().max(50).optional(),
         })
         .optional(),
     }),

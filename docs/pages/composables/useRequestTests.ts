@@ -4,7 +4,7 @@ import { QuoteRequest, BookRequest, UpdateRequest } from "../schemas";
 export const useRequestTests = (
   username: Ref<string>,
   password: Ref<string>,
-  baseUrl: Ref<string>
+  baseUrl: Ref<string>,
 ) => {
   // Data
   const requestInProgress = ref(false);
@@ -23,7 +23,7 @@ export const useRequestTests = (
     request: TRequest | null,
     successResponse: Ref,
     errorResponse: Ref,
-    method: string = "POST"
+    method: string = "POST",
   ) {
     successResponse.value = null;
     errorResponse.value = null;
@@ -61,38 +61,44 @@ export const useRequestTests = (
   const sendQuoteRequest = async (
     request: QuoteRequest,
     response: Ref,
-    errorResponse: Ref
+    errorResponse: Ref,
   ) => {
     return sendRequest("quote", request, response, errorResponse);
   };
   const sendBookRequest = async (
     request: BookRequest,
     response: Ref,
-    errorResponse: Ref
+    errorResponse: Ref,
   ) => {
     return sendRequest("book", request, response, errorResponse);
   };
   const sendStatusRequest = async (
     id: string,
     response: Ref,
-    errorResponse: Ref
+    errorResponse: Ref,
   ) => {
-    return sendRequest("book/" + id, null, response, errorResponse, "GET");
+    return sendRequest("booking/" + id, null, response, errorResponse, "GET");
   };
   const sendUpdateRequest = async (
     id: string,
     request: UpdateRequest,
     response: Ref,
-    errorResponse: Ref
+    errorResponse: Ref,
   ) => {
-    return sendRequest("book/" + id, request, response, errorResponse, "PUT");
+    return sendRequest("update/" + id, request, response, errorResponse, "PUT");
   };
   const sendCancelRequest = async (
     id: string,
     response: Ref,
-    errorResponse: Ref
+    errorResponse: Ref,
   ) => {
-    return sendRequest("book/" + id, null, response, errorResponse, "DELETE");
+    return sendRequest(
+      "booking/" + id,
+      null,
+      response,
+      errorResponse,
+      "DELETE",
+    );
   };
   return {
     requestInProgress,
