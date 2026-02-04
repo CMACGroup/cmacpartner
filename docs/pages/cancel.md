@@ -76,7 +76,8 @@ This request is used to cancel a booking immediately. There is the possibility t
     "driver": {
       "name": "Tester Driver Person",
       "number": "07912345678",
-      "image": "https://www.driverpictures.com/123456789"
+      "image": "https://www.driverpictures.com/123456789",
+      "callsign": "BG6876"
     }
   }
 }
