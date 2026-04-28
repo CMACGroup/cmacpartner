@@ -1,48 +1,55 @@
 import { z } from "zod";
-import { vehicleTypeValues, priceSchema, stopSchema } from "./common";
+import {
+    meetAndGreetSchema,
+    priceSchema,
+    stopSchema,
+    vehicleTypeValues,
+} from "./common";
 
 const bookRequestSchema = z
-  .object({
-    operatorId: z.string().max(50).optional(),
-    pickup: z.string().datetime({ offset: true }),
-    stops: z
-      .array(stopSchema)
-      .refine((x) => x && x.length > 1 && x.length < 10, {
-        message: "There must be at least 2 stops and no more than 10",
-      }),
-    vehicle: z.object({
-      type: z.enum(vehicleTypeValues),
-      attributes: z.array(z.string()).optional(),
-    }),
-    paxCount: z.number().int().gt(0).lte(99),
-    reference: z.string().max(50),
-    passenger: z
-      .object({
-        name: z.string().max(255),
-        number: z.string().max(50).optional(),
-      })
-      .optional(),
-    price: priceSchema,
-    distance: z.number().int(),
-    notes: z.string().max(255).optional(),
-    flightNumber: z.string().max(255).optional(),
-    attributes: z
-      .object({
-        attribute1: z.string(),
-        attribute2: z.string(),
-      })
-      .optional(),
-  })
-  .strict();
+    .object({
+        operatorId: z.string().max(50).optional(),
+        pickup: z.string().datetime({ offset: true }),
+        stops: z
+            .array(stopSchema)
+            .refine((x) => x && x.length > 1 && x.length < 10, {
+                message: "There must be at least 2 stops and no more than 10",
+            }),
+        vehicle: z.object({
+            type: z.enum(vehicleTypeValues),
+            attributes: z.array(z.string()).optional(),
+        }),
+        paxCount: z.number().int().gt(0).lte(99),
+        reference: z.string().max(50),
+        passenger: z
+            .object({
+                name: z.string().max(255),
+                number: z.string().max(50).optional(),
+            })
+            .optional(),
+        price: priceSchema,
+        additionalPrices: z.array(priceSchema).nullable().optional(),
+        distance: z.number().int(),
+        notes: z.string().max(255).optional(),
+        flightNumber: z.string().max(255).optional(),
+        meetAndGreet: meetAndGreetSchema.nullable().optional(),
+        attributes: z
+            .object({
+                attribute1: z.string(),
+                attribute2: z.string(),
+            })
+            .optional(),
+    })
+    .strict();
 
 type BookRequest = z.infer<typeof bookRequestSchema>;
 
 const bookResponseSchema = z
-  .object({
-    id: z.string().max(50).min(5),
-    eta: z.number().int().optional(),
-  })
-  .strict();
+    .object({
+        id: z.string().max(50).min(5),
+        eta: z.number().int().optional(),
+    })
+    .strict();
 
 type BookResponse = z.infer<typeof bookResponseSchema>;
 
@@ -90,19 +97,35 @@ const sampleBookRequest: string = `{
         "attribute2" : "Value2"
       }
     },
+    "additionalPrices": [
+      {
+        "type": "MeetAndGreet",
+        "description": "Meet and Greet",
+        "amount": 1500,
+        "currency": "GBP",
+        "attributes" : {
+            "attribute1" : "Value1",
+            "attribute2" : "Value2"
+        }
+      }
+    ],
     "distance": 5164,
     "notes": "Meet round by the side entrance",
     "flightNumber": "BA1234",
-    "attributes" : {
-      "attribute1" : "Value1",
-      "attribute2" : "Value2"
-    }    
+    "attributes": {
+      "attribute1": "Value1",
+      "attribute2": "Value2"
+    },
+    "meetAndGreet": {
+      "pickUpPoint": "By the counter in the arrivals hall",
+      "waitingTimeMinutesIncluded": 30
+    },
   }`;
 
 export {
-  bookRequestSchema,
-  BookRequest,
-  bookResponseSchema,
-  BookResponse,
-  sampleBookRequest,
+    BookRequest,
+    bookRequestSchema,
+    BookResponse,
+    bookResponseSchema,
+    sampleBookRequest,
 };

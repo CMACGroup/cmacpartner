@@ -11,9 +11,8 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
     public BasicAuthenticationHandler(
         IOptionsMonitor<AuthenticationSchemeOptions> options,
         ILoggerFactory logger,
-        UrlEncoder encoder,
-        ISystemClock clock
-    ) : base(options, logger, encoder, clock)
+        UrlEncoder encoder
+    ) : base(options, logger, encoder)
     {
     }
 
@@ -35,7 +34,7 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
         }
 
         Response.StatusCode = StatusCodes.Status401Unauthorized;
-        Response.Headers.Add("WWW-Authenticate", "Basic realm=\"this websites domain.com\"");
+        Response.Headers.Append("WWW-Authenticate", "Basic realm=\"this websites domain.com\"");
         return Task.FromResult(AuthenticateResult.Fail("Invalid Authorization Header"));
     }
 }
