@@ -66,7 +66,7 @@ After a request to `book` a journey has been made, there may be later alteration
       "attribute2" : "Value2"
     }
   },
-  "additionalPrices": [
+  "extras": [
     {
       "type": "MeetAndGreet",
       "description": "Meet and Greet",

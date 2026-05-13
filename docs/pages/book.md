@@ -66,7 +66,7 @@ Used to place a new booking. The returned id enables us to contact you and make 
        "attribute2" : "Value2"
     }
   },
-  "additionalPrices": [
+  "extras": [
     {
       "type": "MeetAndGreet",
       "description": "Meet and Greet",

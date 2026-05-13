@@ -28,7 +28,7 @@ const bookRequestSchema = z
             })
             .optional(),
         price: priceSchema,
-        additionalPrices: z.array(priceSchema).nullable().optional(),
+        extras: z.array(priceSchema).nullable().optional(),
         distance: z.number().int(),
         notes: z.string().max(255).optional(),
         flightNumber: z.string().max(255).optional(),
@@ -97,7 +97,7 @@ const sampleBookRequest: string = `{
         "attribute2" : "Value2"
       }
     },
-    "additionalPrices": [
+    "extras": [
       {
         "type": "MeetAndGreet",
         "description": "Meet and Greet",

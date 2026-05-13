@@ -30,7 +30,7 @@ public class BookRequest : IValidatableObject
 
     public Price Price { get; set; } = null!;
 
-    public Price[] AdditionalPrices { get; set; } = Array.Empty<Price>();
+    public Price[] Extras { get; set; } = Array.Empty<Price>();
 
     [StringLength(255)]
     public string? Notes { get; set; }
