@@ -23,7 +23,7 @@ Used to place a new booking. The returned id enables us to contact you and make 
   "pickup": "2023-02-01T18:30:00+01:00",
   "stops": [
     {
-      "pickupPoint": "Round he back of the main building",
+      "pickupPoint": "Round the back of the main building",
       "address1": "17 The Street",
       "address2": "Over here",
       "town": "Testsville",
@@ -62,16 +62,32 @@ Used to place a new booking. The returned id enables us to contact you and make 
     "amount": 3250,
     "currency": "GBP",
     "attributes" : {
-      "attribute1" : "Value1",
-      "attribute2" : "Value2"
+       "attribute1" : "Value1",
+       "attribute2" : "Value2"
     }
   },
+  "extras": [
+    {
+      "type": "MeetAndGreet",
+      "description": "Meet and Greet",
+      "amount": 1500,
+      "currency": "GBP",
+      "attributes" : {
+        "attribute1" : "Value1",
+        "attribute2" : "Value2"
+      }
+    }
+  ],
   "distance": 5164,
   "notes": "Meet round by the side entrance",
   "flightNumber": "BA1234",
   "attributes" : {
     "attribute1" : "Value1",
     "attribute2" : "Value2"
+  },
+  "meetAndGreet": {
+    "pickUpPoint": "By the counter in the arrivals hall",
+    "waitingTimeMinutesIncluded": 30
   }
 }
 ```
