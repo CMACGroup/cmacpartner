@@ -64,11 +64,19 @@ const priceSchema = z
   })
   .strict();
 
+const meetAndGreetSchema = z
+  .object({
+    pickUpPoint: z.nullable(z.string().max(255).optional()),
+    waitingTimeMinutesIncluded: z.number().int().gte(0).optional(),
+  })
+  .strict();
+
 export {
-  vehicleTypeValues,
-  priceTypeValues,
-  stopSchema,
+  meetAndGreetSchema,
   priceSchema,
-  vehicleAttributeValues,
+  priceTypeValues,
   statusTypeValues,
+  stopSchema,
+  vehicleAttributeValues,
+  vehicleTypeValues,
 };

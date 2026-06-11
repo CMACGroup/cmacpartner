@@ -135,3 +135,24 @@ Wherever a currency is used it should be the 3 character ISO reference value e.g
 | type       | Required. One of [the predefined vehicle types](#vehicle-types)                                               |
 | attributes | Optional. Array of strings containing one or more of [the predefined vehicle attributes](#vehicle-attributes) |
 |            |                                                                                                               |
+
+### Meet and Greet
+
+When included in a booking, indicates that a meet and greet service is required. The driver should leave the vehicle and meet the passenger at the specified location.
+
+#### Example
+
+```json
+"meetAndGreet": {
+  "pickUpPoint": "By the counter in the arrivals hall",
+  "waitingTimeMinutesIncluded": 30
+}
+```
+
+#### Schema
+
+| Element                    | Description                                                                                           |
+| -------------------------- | ----------------------------------------------------------------------------------------------------- |
+| pickUpPoint                | Optional. String describing where the driver should meet the passenger. Max length 255                |
+| waitingTimeMinutesIncluded | Optional. Integer. The number of minutes of waiting time included in the meet and greet service price |
+|                            |                                                                                                       |

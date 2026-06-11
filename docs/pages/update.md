@@ -66,12 +66,28 @@ After a request to `book` a journey has been made, there may be later alteration
       "attribute2" : "Value2"
     }
   },
+  "extras": [
+    {
+      "type": "MeetAndGreet",
+      "description": "Meet and Greet",
+      "amount": 1500,
+      "currency": "GBP",
+      "attributes" : {
+        "attribute1" : "Value1",
+        "attribute2" : "Value2"
+      }
+    }
+  ],
   "distance": 5164,
   "notes": "Meet round by the side entrance",
   "flightNumber": "BA1234",
-  "attributes" : {
-    "attribute1" : "Value1",
-    "attribute2" : "Value2"
+  "meetAndGreet": {
+    "pickUpPoint": "By the counter in the arrivals hall",
+    "waitingTimeMinutesIncluded": 30
+  },
+  "attributes": {
+    "attribute1": "Value1",
+    "attribute2": "Value2"
   }
 }
 ```
